@@ -65,7 +65,7 @@ XML
 	width: <?=GFE_NUM_LETTERS?>em;
 }
 </style>
-<script src="jquery-1.3.2.min.js" type="text/javascript"></script>
+<script src="lib/jQuery/jquery-1.3.2.min.js" type="text/javascript"></script>
 <script src="jquery.gfonted.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready( function() {

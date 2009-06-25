@@ -1,0 +1,21 @@
+to install gfonted  you need to create a directory "lib":
+	mkdir lib
+and two subfolders:
+	mkdir lib/facebook
+	mkdir lib/jQuery
+	
+you will need jquery-1.3.2.min.js and put it in the jQuery folder.
+	Available at http://code.google.com/p/jqueryjs/downloads/detail?name=jquery-1.3.2.min.js
+
+you will also need the Facebook PHP Client Library and put the contents
+of the "php" folder and put it in the facebook folder.
+	Available at http://svn.facebook.com/svnroot/platform/clients/packages/facebook-platform.tar.gz
+
+next copy config.sample.php to config.php:
+	cp config.sample.php config.php
+	
+and update it with the database information.
+
+db.sql contains the queries to create all the tables.
+
+finally populate the database using the form on the homepage.
