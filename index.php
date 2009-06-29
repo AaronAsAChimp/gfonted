@@ -1,9 +1,11 @@
 <?php
-header("Content-Type: application/xhtml+xml");
+//header("Content-Type: application/xhtml+xml");
 session_start();
 
 require_once("config.php");
 require_once("sql.php");
+
+require_once(facebook_api_files);
 
 $db = new mysqli(db_lctn, db_user, db_pass, db_db);
 
@@ -57,7 +59,7 @@ echo <<< XML
 XML
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
 <style>
 .input {
@@ -65,7 +67,7 @@ XML
 	width: <?=GFE_NUM_LETTERS?>em;
 }
 </style>
-<script src="lib/jQuery/jquery-1.3.2.min.js" type="text/javascript"></script>
+<script src="<?= jquery_files ?>" type="text/javascript"></script>
 <script src="jquery.gfonted.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready( function() {
@@ -80,13 +82,6 @@ $(document).ready( function() {
 <body>
 <!--<div id="glyph"></div>-->
 
-<form method="POST" action="populate_letter.php">
-	<label for="utf_codepoint">UTF Codepoint</label><input id="utf_codepoint" name="utf_codepoint" type="text" maxlength="1" value="A" /><br />
-	<label for="segments">Number of Segments</label><input id="segments" name="segments" type="text" maxlength="3" value="10" /><br />
-	<label for="max_children">Maximum Number of Children</label><input id="max_children" name="max_children" type="text" maxlength="3" value="26" /><br />
-	<input type="submit" />
-</form>
-
 <div id="text"><?
 for($i = 0; $i < GFE_NUM_LETTERS; $i++) {
 	echo $i;
@@ -94,7 +89,7 @@ for($i = 0; $i < GFE_NUM_LETTERS; $i++) {
 ?></div>
 <form method="POST" action="check_fitness.php">
 <input type="text" maxlength="<?=GFE_NUM_LETTERS?>" id="test" name="test" class="input" />
-<input type="submit" />
+<input type="submit" value="<?= GFE_STRINGS_CHECK_FITNESS_CTA ?>"/>
 </form>
 
 <pre>
