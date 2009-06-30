@@ -155,9 +155,6 @@ define("SQL_UPDATE_CHILD_BIRTH", <<<SQL
 SQL
 );
 
-/*(-GFE_MUTATION_JITTER + rand() + (2 *  GFE_MUTATION_JITTER))*/
-
-
 define("SQL_SELECT_LESS_FIT", <<<SQL
 	select
 		count(*) as cn,
@@ -173,15 +170,18 @@ define("SQL_SELECT_LESS_FIT", <<<SQL
 SQL
 );
 
-/*
+define("SQL_SELECT_CHILD_DETAIL", <<<SQL
 select
-	X(pt),
-	Y(pt),
-	sz,
+	utf_codepoint,
+	segments,
+	(now() - dob) as age,
+	status,
 	fitness
-from Points
-left join Children
-	using (children_id)
+from Children
+left join Template
+	using (template_id)
 where
-	template_id = 2*/
+	children_id = ?
+SQL
+);
 ?>

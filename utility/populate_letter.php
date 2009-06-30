@@ -1,5 +1,5 @@
 <?php
-require_once("config.php");
+require_once("../config.php");
 require_once("sql.php");
 // make a child that conforms to the config parameters
 function make_child_points($seg, $child) {
@@ -18,6 +18,7 @@ function make_child_points($seg, $child) {
 }
 
 $utf_codepoint = filter_input(INPUT_POST, 'utf_codepoint', FILTER_SANITIZE_STRING);
+$code_range = filter_input(INPUT_POST, 'code_range', FILTER_SANITIZE_STRING);
 $segments = filter_input(INPUT_POST, 'segments', FILTER_SANITIZE_NUMBER_INT);
 $max_children = filter_input(INPUT_POST, 'max_children', FILTER_SANITIZE_NUMBER_INT);
 
@@ -47,5 +48,5 @@ for($i = 0; $i < $max_children; $i++) {
 
 $ch_prep->close();
 
-header("Location: index.php");
+header("Location: ../new_glyph.php");
 ?>

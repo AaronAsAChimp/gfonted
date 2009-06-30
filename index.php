@@ -3,7 +3,7 @@
 session_start();
 
 require_once("config.php");
-require_once("sql.php");
+require_once("utility/sql.php");
 
 require_once(facebook_api_files);
 
@@ -87,7 +87,7 @@ for($i = 0; $i < GFE_NUM_LETTERS; $i++) {
 	echo $i;
 }
 ?></div>
-<form method="POST" action="check_fitness.php">
+<form method="POST" action="utility/check_fitness.php">
 <input type="text" maxlength="<?=GFE_NUM_LETTERS?>" id="test" name="test" class="input" />
 <input type="submit" value="<?= GFE_STRINGS_CHECK_FITNESS_CTA ?>"/>
 </form>

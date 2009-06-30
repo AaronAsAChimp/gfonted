@@ -1,6 +1,6 @@
 <?php
+require_once("../config.php");
 require_once("sql.php");
-require_once("config.php");
 require_once("math.php");
 
 class Mutation_Engine {

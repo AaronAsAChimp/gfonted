@@ -2,7 +2,7 @@
 $test = filter_input(INPUT_POST, 'test', FILTER_SANITIZE_STRING);
 session_start();
 
-require_once("config.php");
+require_once("../config.php");
 require_once("sql.php");
 require_once("mutation_engine.php");
 
@@ -31,5 +31,5 @@ for($i = 0; $i < GFE_NUM_LETTERS; $i++) {
 	}
 }
 
-header("Location:index.php");
+header("Location:../index.php");
 ?>

@@ -42,6 +42,7 @@ DEFAULT CHARACTER SET utf8;
 
 
 create table Correct (
+	vote_time timestamp default now(),
 	correct_id int unsigned auto_increment,
 	children_id int unsigned not null,
 	correct bool not null,

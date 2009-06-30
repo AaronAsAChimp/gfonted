@@ -1,9 +1,10 @@
 <?php
-header("Content-Type: application/xhtml+xml");
+//header("Content-Type: application/xhtml+xml");
 session_start();
 
 require_once("config.php");
-require_once("sql.php");
+require_once("utility/date.php");
+require_once("utility/sql.php");
 
 $db = new mysqli(db_lctn, db_user, db_pass, db_db);
 
@@ -25,6 +26,18 @@ while($pts_stmt->fetch()){
 $pts_stmt->close();
 
 
+$pts_stmt = $db->prepare(SQL_SELECT_CHILD_DETAIL);
+echo $db->error;
+$pts_stmt->bind_param("i", $id);
+
+$pts_stmt->execute();
+$pts_stmt->bind_result($char, $segments, $age, $status, $fitness);	
+
+$pts_stmt->fetch();
+
+$pts_stmt->close();
+
+
 //var_dump($kids);
 
 echo <<< XML
@@ -40,15 +53,28 @@ XML
 $(document).ready( function() {
 	var letter = <?=json_encode($kid)?>;
 	
-	$("#glyph").gfonted_draw_glyph(letter, 500, 'wire');
+	$("#glyph").gfonted_draw_glyph(letter, 250);
 	
 });
 </script>
 </head>
 <body>
-
-
 <div id="glyph"></div>
-
+<dl>
+	<dt>UTF Codepoint</dt>
+	<dd><?= $char ?></dd>
+	
+	<dt>Number of segments</dt>
+	<dd><?= $segments ?></dd>
+	
+	<dt>Age</dt>
+	<dd><?= format_duration($age) ?></dd>
+	
+	<dt>Status</dt>
+	<dd><?= $status ?></dd>
+	
+	<dt>Fitness</dt>
+	<dd><?= $fitness ?></dd>
+</dl>
 </body>
 </html>

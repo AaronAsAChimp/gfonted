@@ -1,7 +1,7 @@
 <h1>Test Clamp</h1>
 <pre>
 <?php
-require_once("math.php");
+require_once("utility/math.php");
 echo ReflectionFunction::export('clamp');
 ?>
 </pre>
