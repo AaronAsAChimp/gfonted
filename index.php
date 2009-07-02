@@ -62,9 +62,27 @@ XML
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
 <style>
+body {
+	font-family: Helvetica, Nimbus Sans, sans-serif;
+}
+
 .input {
 	font-size: <?= GFE_PX_SIZE ?>px;
 	width: <?=GFE_NUM_LETTERS?>em;
+}
+
+#page {
+	width: <?= (GFE_PX_SIZE * (GFE_NUM_LETTERS + 1)) ?>px;
+	text-align: justify;
+	font-size: 15px;
+	margin: 10px auto;
+}
+
+#input {
+	width: <?= (GFE_PX_SIZE * (GFE_NUM_LETTERS)) + 6 ?>px;
+	text-align: right;
+	margin: 0 auto;
+	padding: 20px 0;
 }
 </style>
 <script src="<?= jquery_files ?>" type="text/javascript"></script>
@@ -80,8 +98,10 @@ $(document).ready( function() {
 </script>
 </head>
 <body>
+<div id="page">
 <!--<div id="glyph"></div>-->
 
+<div id="input">
 <div id="text"><?
 for($i = 0; $i < GFE_NUM_LETTERS; $i++) {
 	echo $i;
@@ -91,15 +111,21 @@ for($i = 0; $i < GFE_NUM_LETTERS; $i++) {
 <input type="text" maxlength="<?=GFE_NUM_LETTERS?>" id="test" name="test" class="input" />
 <input type="submit" value="<?= GFE_STRINGS_CHECK_FITNESS_CTA ?>"/>
 </form>
+</div>
+
+<?= GFE_STRINGS_HOME_PAGE_COPY?>
 
 <pre>
-<!--<?= 
-
+<!-- <?
+/*
 var_dump($_SESSION); 
 echo "\n";
 
-var_dump($kids);
-?>-->
+var_dump($kids);*/
+?> -->
 </pre>
+
+</div>
+
 </body>
 </html>
