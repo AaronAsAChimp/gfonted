@@ -101,10 +101,16 @@ $(document).ready( function() {
 <div id="page">
 <!--<div id="glyph"></div>-->
 
-The character sequence was: <?= $_SESSION['target'] ?><br />
-You you thought it was: <?= $_SESSION['test'] ?><br />
+<p>
+<?= GFE_STRINGS_CHARACTER_SEQUENCE_WAS, $_SESSION['target'] ?><br />
+<?= GFE_STRINGS_CHARACTER_SEQUENCE_WASNT, $_SESSION['test'] ?><br />
+</p>
 
-<h2>Children Tested:</h2>
+<p>
+<a href="./"><?= GFE_STRINGS_TRY_AGAIN ?></a>
+</p>
+
+<h2><?= GFE_STRINGS_CHILDREN_TESTED ?></h2>
 <ul>
 <?
 foreach($_SESSION['child_ids'] as $kid) {?>
@@ -113,7 +119,7 @@ foreach($_SESSION['child_ids'] as $kid) {?>
 ?>
 </ul>
 
-<h2>Parents Selected for Reproduction:</h2>
+<h2><?= GFE_STRINGS_PARENTS ?></h2>
 <ul>
 <? foreach($_SESSION['parent_ids'] as $tmpl) {?>
 
@@ -129,7 +135,7 @@ foreach($_SESSION['child_ids'] as $kid) {?>
 ?>
 </ul>
 
-<h2>Offspring:</h2>
+<h2><?= GFE_STRINGS_OFFSPRING ?></h2>
 <ul>
 <? foreach($_SESSION['offspring_ids'] as $tmpl) {?>
 

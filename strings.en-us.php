@@ -1,10 +1,21 @@
 <?php
+
+	// new glyph
 	define("GFE_STRINGS_UTF_CODEPOINT", "UTF Codepoint");
 	define("GFE_STRINGS_UTF_RANGE", "Range of UTF Codepoints eg. 0000..007F; Basic Latin");
 	define("GFE_STRINGS_NUMBER_SEGMENTS", "Number of Segments");
 	define("GFE_STRINGS_MAXIMUM_CHILDREN", "Maximum Number of Children");
 	
-	define("GFE_STRINGS_CHECK_FITNESS_CTA", "Mate &raquo;");
+	// birth
+	define(GFE_STRINGS_CHARACTER_SEQUENCE_WAS, "The character sequence was: ");
+	define("GFE_STRINGS_CHARACTER_SEQUENCE_WASNT", "You you thought it was: ");
+	define("GFE_STRINGS_TRY_AGAIN", "Try Again &raquo;");
+	define("GFE_STRINGS_CHILDREN_TESTED", "Children Tested:");
+	define("GFE_STRINGS_PARENTS", "Parents Selected for Reproduction:");
+	define("GFE_STRINGS_OFFSPRING", "Offspring:");
+	
+	// index
+	define('GFE_STRINGS_CHECK_FITNESS_CTA', "Mate &raquo;");
 	
 	define('GFE_STRINGS_HOME_PAGE_COPY', <<< COPY
 <p>
