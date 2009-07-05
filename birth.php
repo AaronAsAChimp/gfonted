@@ -4,7 +4,7 @@ session_start();
 
 require_once("config.php");
 require_once("utility/sql.php");
-
+/*
 require_once(facebook_api_files);
 
 $db = new mysqli(db_lctn, db_user, db_pass, db_db);
@@ -20,8 +20,6 @@ $id = 0;
 $_SESSION['target'] = "";
 $_SESSION['child_ids'] = Array();
 $_SESSION['template_ids'] = Array();
-$_SESSION['parent_ids'] = Array();
-$_SESSION['offspring_ids'] = Array();
 
 for($i = 0; $i< GFE_NUM_LETTERS; $i++) {
 	
@@ -55,7 +53,7 @@ for($i = 0; $i< GFE_NUM_LETTERS; $i++) {
 }
 
 //var_dump($kids);
-
+*/
 echo <<< XML
 <?xml version="1.0" encoding="UTF-8"?>
 XML
@@ -103,28 +101,55 @@ $(document).ready( function() {
 <div id="page">
 <!--<div id="glyph"></div>-->
 
-<div id="input">
-<div id="text"><?
-for($i = 0; $i < GFE_NUM_LETTERS; $i++) {
-	echo $i;
-}
-?></div>
-<form method="POST" action="utility/check_fitness.php">
-<input type="text" maxlength="<?=GFE_NUM_LETTERS?>" id="test" name="test" class="input" />
-<input type="submit" value="<?= GFE_STRINGS_CHECK_FITNESS_CTA ?>"/>
-</form>
-</div>
+The character sequence was: <?= $_SESSION['target'] ?><br />
+You you thought it was: <?= $_SESSION['test'] ?><br />
 
-<?= GFE_STRINGS_HOME_PAGE_COPY?>
+<h2>Children Tested:</h2>
+<ul>
+<?
+foreach($_SESSION['child_ids'] as $kid) {?>
+	<li><a href="child_viewer.php?c=<?= $kid ?>"><?= $kid ?></a></li>
+<?} 
+?>
+</ul>
+
+<h2>Parents Selected for Reproduction:</h2>
+<ul>
+<? foreach($_SESSION['parent_ids'] as $tmpl) {?>
+
+	<li><ul>
+	<?
+	foreach($tmpl as $parent) {?>
+		<li><a href="child_viewer.php?c=<?= $parent ?>"><?= $parent ?></a></li>
+	<? }
+	?>
+	</ul></li>
+
+<?}
+?>
+</ul>
+
+<h2>Offspring:</h2>
+<ul>
+<? foreach($_SESSION['offspring_ids'] as $tmpl) {?>
+
+	<li><ul>
+	<?
+	foreach($tmpl as $baby) {?>
+		<li><a href="child_viewer.php?c=<?= $baby ?>"><?= $baby ?></a></li>
+	<? }
+	?>
+	</ul></li>
+
+<?}
+?>
+</ul>
 
 <pre>
-<!-- <?
-/*
+<?/*
 var_dump($_SESSION); 
-echo "\n";
-
-var_dump($kids);*/
-?> -->
+*/
+?>
 </pre>
 
 </div>

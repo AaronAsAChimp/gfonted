@@ -9,6 +9,8 @@ require_once("mutation_engine.php");
 $db = new mysqli(db_lctn, db_user, db_pass, db_db);
 $me = new Mutation_Engine();
 
+$_SESSION['test']  = $test;
+
 // basic fitness check
 for($i = 0; $i < GFE_NUM_LETTERS; $i++) {
 	$correct = $test[$i] == $_SESSION['target'][$i];
@@ -25,11 +27,12 @@ for($i = 0; $i < GFE_NUM_LETTERS; $i++) {
 	$stmt->execute();
 	$stmt->close();
 
-	if($correct) {
-		$me->euthanize($template_id);
-		$me->conceive($template_id);
-	}
+	$me->euthanize($template_id);
+	$me->conceive($template_id);
+	
+	//if($correct) {
+	//}
 }
 
-header("Location:../index.php");
+header("Location:../birth.php");
 ?>

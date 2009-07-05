@@ -82,6 +82,7 @@ SQL
 
 define("SQL_SELECT_MOST_FIT", <<<SQL
 	select
+		children_id,
 		X(pt),
 		Y(pt),
 		sz,
@@ -182,6 +183,18 @@ left join Template
 	using (template_id)
 where
 	children_id = ?
+SQL
+);
+
+define("SQL_SELECT_TEMPLATE_DETAIL", <<<SQL
+select
+	template_id,
+	utf_codepoint,
+	avg(fitness)
+from Children
+left join Template
+	using(template_id)
+group by template_id
 SQL
 );
 ?>

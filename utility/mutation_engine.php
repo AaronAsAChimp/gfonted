@@ -73,16 +73,22 @@ class Mutation_Engine {
 		$stmt = $this->source_db->prepare(SQL_SELECT_MOST_FIT);
 		$stmt->bind_param("ii", $id, $total_points);
 		$stmt->execute();
-		$stmt->bind_result($px, $py, $psz, $po);
+		$stmt->bind_result($kid_id, $px, $py, $psz, $po);
 
 		while($stmt->fetch()) {
-			//echo "1";
+			
+			// messy I know
+			$_SESSION['parent_ids'][$id][$kid_id] = $kid_id;
+			
+			// not messy, :)
 			$parents[$po][] = Array (
 				'x' => $px,
 				'y' => $py,
 				'sz' => $psz);
 			
 		}
+		
+		$_SESSION['parent_ids'][$id] = array_values($_SESSION['parent_ids'][$id]);
 		
 		/*echo "<pre>";
 		var_dump($parents);
@@ -101,6 +107,8 @@ class Mutation_Engine {
 		for($i = 0; $i < GFE_DEATH_RATE; $i++) {
 			$ch_prep->execute();
 			$cid = $ch_prep->insert_id;
+			
+			$_SESSION['offspring_ids'][$id][] = $cid;
 
 			// populate the points
 			for($j = 0; $j < $segments; $j++) {
